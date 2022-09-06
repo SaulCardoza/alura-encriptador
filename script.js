@@ -1,3 +1,5 @@
+// Declarando variables
+
 const inputTexto = document.querySelector(".entradaTexto");
 const mensaje = document.querySelector(".mensaje");
 const adv = document.querySelector(".advertencia");
@@ -5,7 +7,7 @@ const copiar = document.querySelector(".btnCopiar");
 
 copiar.style.display = "none"
 
-//Encriptar mensaje
+// Encriptar mensaje
 
 function btnCript() {
   const textoEncriptado = cript(inputTexto.value)
@@ -14,8 +16,8 @@ function btnCript() {
   adv.style.display= "none"
   inputTexto.value = ""
   copiar.style.display = "block"
-
 }
+
 
 function cript(stringEncriptada) {
   let matrizCodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o","ober"], ["u","ufat"]];
@@ -27,17 +29,20 @@ function cript(stringEncriptada) {
       }                
   }
   return stringEncriptada;
-  
 }
 
 
-//Desencriptar mensaje
+// Desencriptar mensaje
 
 function btnDscript() {
   const textoEncriptado = dsCript(inputTexto.value)
   mensaje.value = textoEncriptado
-  inputTexto.value = ""  
+  mensaje.style.backgroundImage="none"
+  adv.style.display= "none"
+  inputTexto.value = ""
+  copiar.style.display = "block"
 }
+
 
 function dsCript(stringDesencriptada) {
   let matrizCodigo = [ ["e", "enter"], ["i", "imes"], ["a", "ai"], ["o","ober"], ["u","ufat"]];
@@ -48,17 +53,18 @@ function dsCript(stringDesencriptada) {
           stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0])
       }
   }
-
   return stringDesencriptada;
 }
 
 
-//botón copiar
+// Botón copiar
 
 function copiarJS() {
-  mensaje.select;
-  mensaje.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(mensaje.value);
-  mensaje.value = "";
-  alert("Texto copiado al potapapeles");
+  var msgEncriptadoJS = document.getElementById("msgEncriptado")
+  console.log("mensaje",msgEncriptadoJS.value);
+  navigator.clipboard.writeText(msgEncriptadoJS.value).then(() => {
+    alert("Texto copiado al portapapeles");    
+    }).catch(() => {
+    alert("Error en el copiado de texto");
+    });
 }
